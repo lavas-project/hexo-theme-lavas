@@ -1,7 +1,7 @@
 <%- partial('_partial/head') %>
 <body>
     <div id="container">
-        <transition name="slide-left">
+        <transition :name="pageTransitionName">
             <div id="wrap" :key="$route.fullPath">
                 <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
                 <!-- 新html片段容器 -->

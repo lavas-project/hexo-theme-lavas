@@ -37,3 +37,4 @@ fb_app_id:
 
 serviceWorker: true
 manifest: true
+needPageTransition: true

@@ -24,7 +24,17 @@
 <%- js('js/script') %>
 
 <script>
-  require(['js/app']);
+  require(['js/app'], function (app) {
+    <% if (theme.needPageTransition) { %>
+      var needPageTransition = true;
+    <% } %>
+    <% if (!theme.needPageTransition) { %>
+      var needPageTransition = false;
+    <% } %>
+    app({
+      needPageTransition: needPageTransition
+    });
+  });
 </script>
 
 <% if (theme.serviceWorker) { %>

@@ -2,28 +2,20 @@ define(function (require) {
 
     var Vue = require('./lib/vue.min');
     var VueRouter = require('./lib/vue-router.min');
-    var Page = require('./component/page');
+    var App = require('./components/app');
+    var router = require('./router');
 
     Vue.use(VueRouter);
-    var router = new VueRouter({
-        routes: [
-            {
-                path: '*',
-                name: 'page',
-                component: Page
-            }
-        ]
-    });
-    new Vue({
-        router: router,
-        template: $('body').html()
-    }).$mount('#container');
 
-    $(document.body).on('click', 'a', function (e) {
-        if (this.origin === location.origin) {
-            location.href = '#' + this.href.replace(location.origin, '');
-            return false;
-        }
-    });
+    function init(opt) {
+        var options = $.extend({
+            router: router({
+                needPageTransition: opt.needPageTransition
+            })
+        }, App);
+        new Vue(options).$mount('#container');
+    }
+
+    return init;
 
 });

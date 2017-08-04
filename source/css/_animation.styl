@@ -1,0 +1,15 @@
+$transitionDuration = .4s
+
+#wrap
+    transition transform $transitionDuration cubic-bezier(.55, 0, .1, 1)
+    &.slide-left-enter
+        transform translate(100%, 0)
+
+    &.slide-right-enter
+        transform translate(-100%, 0)
+
+    &.slide-right-leave-active
+        transform translate(100%, 0)
+
+    &.slide-left-leave-active
+        transform translate(-100%, 0)
