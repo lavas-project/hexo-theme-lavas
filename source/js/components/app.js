@@ -6,7 +6,9 @@ define(function (require) {
         template: $('body').html(),
         data: function () {
             return {
-                pageTransitionName: ''
+                pageTransitionName: '',
+                animationActive: false,
+                headerWidth: ''
             };
         },
         created: function () {
@@ -23,6 +25,16 @@ define(function (require) {
                     return false;
                 }
             });
+
+        },
+        methods: {
+            handleBeforeEnter: function () {
+                this.animationActive = true;
+            },
+            handleAfterEnter: function () {
+                this.animationActive = false;
+                EventBus.$emit('AFTER_ENTER');
+            }
         }
     };
 });

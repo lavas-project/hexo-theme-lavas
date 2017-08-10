@@ -1,22 +1,26 @@
 <%- partial('_partial/head') %>
 <body>
     <div id="container">
-        <transition :name="pageTransitionName">
-            <div id="wrap" :key="$route.fullPath">
-                <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
-                <!-- 新html片段容器 -->
-                <router-view></router-view>
-                <div class="outer main-outer" style="display: none">
-                    <section id="main">
-                        <%- body %>
-                    </section>
-                    <% if (theme.sidebar && theme.sidebar !== 'bottom'){ %>
-                        <%- partial('_partial/sidebar', null, {cache: !config.relative_link}) %>
-                    <% } %>
+        <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
+        <div class="transition-wrapper" :class="{animation: animationActive}">
+            <transition :name="pageTransitionName"
+                @before-enter="handleBeforeEnter"
+                @after-enter="handleAfterEnter">
+                <div class="wrap" :key="$route.fullPath">
+                    <!-- 新html片段容器 -->
+                    <router-view></router-view>
+                    <div class="outer main-outer" style="display: none">
+                        <section id="main">
+                            <%- body %>
+                        </section>
+                        <% if (theme.sidebar && theme.sidebar !== 'bottom'){ %>
+                            <%- partial('_partial/sidebar', null, {cache: !config.relative_link}) %>
+                        <% } %>
+                    </div>
+                    <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
                 </div>
-                <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
-            </div>
-        </transition>
+            </transition>
+        </div>
         <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
         <%- partial('_partial/after-footer') %>
     </div>

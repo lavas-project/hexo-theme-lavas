@@ -21,8 +21,6 @@
   <%- js('fancybox/jquery.fancybox.pack') %>
 <% } %>
 
-<%- js('js/script') %>
-
 <script>
   require(['js/app'], function (app) {
     <% if (theme.needPageTransition) { %>
@@ -34,6 +32,7 @@
     app({
       needPageTransition: needPageTransition
     });
+    require(['js/script']);
   });
 </script>
 

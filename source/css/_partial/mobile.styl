@@ -2,13 +2,16 @@
   #mobile-nav
     position: absolute
     top: 0
-    left: 0
+    left: -100%
     width: mobile-nav-width
     height: 100%
     background: color-mobile-nav-background
     border-right: 1px solid #fff
-
-@media mq-mobile
+    transition: .3s ease-out
+    z-index: 10001
+    display: block
+    .mobile-nav-on &
+      left: 0
   .mobile-nav-link
     display: block
     color: color-grey
@@ -16,4 +19,21 @@
     padding: 15px 20px
     font-weight: bold
     &:hover
-      color: #fff
+      color: #666
+  .wrap
+    top: header-height
+  #header
+    height: header-height
+    position: fixed
+    z-index: 9999
+    top: 0
+    left: 0
+    right: 0
+    #banner
+      background: theme-color
+  #footer
+    display: none
+  #logo
+    font-size: 24px
+    font-weight: normal
+    letter-spacing: 0
