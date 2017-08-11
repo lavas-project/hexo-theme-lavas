@@ -1,43 +1,52 @@
 <% if (config.disqus_shortname) { %>
-<script>
-  var disqus_shortname = '<%= config.disqus_shortname %>';
-  <% if (page.permalink){ %>
-  var disqus_url = '<%= page.permalink %>';
-  <% } %>
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/<% if (page.comments) { %>embed.js<% } else { %>count.js<% } %>';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
+    <script>
+        var disqus_shortname = '<%= config.disqus_shortname %>';
+
+        <% if (page.permalink) { %>
+            var disqus_url = '<%= page.permalink %>';
+        <% }  %>
+
+        (function () {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/<% if (page.comments) { %>embed.js<% } else { %>count.js<% } %>';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
 <% } %>
 
 <%- js('js/lib/jquery.min') %>
 <%- js('js/lib/require') %>
-<% if (theme.fancybox){ %>
-  <%- css('fancybox/jquery.fancybox') %>
-  <%- js('fancybox/jquery.fancybox.pack') %>
+
+<% if (theme.fancybox) { %>
+    <%- css('fancybox/jquery.fancybox') %>
+    <%- js('fancybox/jquery.fancybox.pack') %>
 <% } %>
 
 <script>
-  require(['js/app'], function (app) {
-    <% if (theme.needPageTransition) { %>
-      var needPageTransition = true;
-    <% } %>
-    <% if (!theme.needPageTransition) { %>
-      var needPageTransition = false;
-    <% } %>
-    app({
-      needPageTransition: needPageTransition
+    require.config({
+        baseUrl: '/'
     });
-    require(['js/script']);
-  });
+    require(['js/app'], function (app) {
+
+        <% if (theme.needPageTransition) { %>
+            var needPageTransition = true;
+        <% } %>
+
+        <% if (!theme.needPageTransition) { %>
+            var needPageTransition = false;
+        <% } %>
+
+        app({
+            needPageTransition: needPageTransition
+        });
+        require(['js/script']);
+    });
 </script>
 
 <% if (theme.serviceWorker) { %>
-<script>
-  navigator.serviceWorker && navigator.serviceWorker.register('/service-worker.js');
-</script>
+    <script>
+        navigator.serviceWorker && navigator.serviceWorker.register('/service-worker.js');
+    </script>
 <% } %>
