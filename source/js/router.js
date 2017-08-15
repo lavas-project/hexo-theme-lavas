@@ -1,3 +1,8 @@
+/**
+ * @file router.js
+ * @author zhangzhiqiang(zhiqiangzhang37@gmail.com)
+ */
+
 define(function (require) {
 
     var VueRouter = require('./lib/vue-router.min');

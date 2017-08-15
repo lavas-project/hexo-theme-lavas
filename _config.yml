@@ -38,3 +38,4 @@ fb_app_id:
 serviceWorker: true
 manifest: true
 needPageTransition: true
+summary: '一个使用hexo-theme-lavas主题开发的博客...'

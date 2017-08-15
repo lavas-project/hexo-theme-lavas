@@ -1,3 +1,8 @@
+/**
+ * @file app.js
+ * @author zhangzhiqiang(zhiqiangzhang37@gmail.com)
+ */
+
 define(function (require) {
 
     var EventBus = require('../lib/event-bus');

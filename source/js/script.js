@@ -1,35 +1,6 @@
-define(function() {
-  // Search
-  var isSearchAnim = false;
-  var searchAnimDuration = 200;
+define(function () {
+
   var $container = $('#container');
-
-  var startSearchAnim = function(){
-    isSearchAnim = true;
-  };
-
-  var stopSearchAnim = function(callback){
-    setTimeout(function(){
-      isSearchAnim = false;
-      callback && callback();
-    }, searchAnimDuration);
-  };
-
-  $container.on('click', '#nav-search-btn', function(){
-    if (isSearchAnim) return;
-
-    startSearchAnim();
-    $('#search-form-wrap').addClass('on');
-    stopSearchAnim(function(){
-      $('.search-form-input').focus();
-    });
-  });
-
-  $('.search-form-input').on('blur', function(){
-    startSearchAnim();
-    $('#search-form-wrap').removeClass('on');
-    stopSearchAnim();
-  });
 
   // Share
   $container.on('click', function(){

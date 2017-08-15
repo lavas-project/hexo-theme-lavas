@@ -1,3 +1,8 @@
+/**
+ * @file app.js
+ * @author zhangzhiqiang(zhiqiangzhang37@gmail.com)
+ */
+
 define(function (require) {
 
     var Vue = require('./lib/vue.min');
@@ -8,6 +13,12 @@ define(function (require) {
     Vue.use(VueRouter);
 
     function init(opt) {
+
+        // 如果是从非首页进入的要将hash定位到对应页面
+        if (location.pathname !== '/') {
+            location.href = '#' + location.pathname;
+        }
+
         var options = $.extend({
             router: router({
                 needPageTransition: opt.needPageTransition
