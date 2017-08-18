@@ -1,6 +1,6 @@
 <%- partial('_partial/head') %>
 <body>
-    <div id="container">
+    <div id="container" :class="{'mobile-nav-on': mobileNavOn}">
         <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
         <div class="transition-wrapper" :class="{animation: animationActive}">
             <transition :name="pageTransitionName"
@@ -15,13 +15,33 @@
                         </div>
                         <router-view></router-view>
                     </div>
-                    <div class="outer main-outer" style="display: none">
-                        <section id="main">
-                            <%- body %>
-                        </section>
-                        <% if (theme.sidebar && theme.sidebar !== 'bottom') { %>
-                            <%- partial('_partial/sidebar', null, {cache: !config.relative_link}) %>
+                    <div class="main-outer" style="display: none">
+                        <% if (path === 'index.html') { %>
+                            <div class="theme-img-wrapper">
+                                <% if (theme.banner) { %>
+
+                                    <% if (theme.banner.pc) { %>
+                                        <img src="<%= theme.banner.pc %>" class="theme-img theme-img-pc">
+                                    <% } %>
+
+                                    <% if (theme.banner.mobile) { %>
+                                        <img src="<%= theme.banner.mobile %>" class="theme-img theme-img-mobile">
+                                    <% } %>
+
+                                <% } %>
+                                <div class="main-info">
+
+                                </div>
+                            </div>
                         <% } %>
+                        <div class="outer">
+                            <section id="main">
+                                <%- body %>
+                            </section>
+                            <% if (theme.sidebar) { %>
+                                <%- partial('_partial/sidebar', null, {cache: !config.relative_link}) %>
+                            <% } %>
+                        </div>
                     </div>
                     <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
                 </div>

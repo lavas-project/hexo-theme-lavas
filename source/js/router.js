@@ -99,7 +99,15 @@ define(function (require) {
 
         opt = opt || {};
         var router = new VueRouter({
-            routes: routes
+            mode: 'history',
+            routes: routes,
+            scrollBehavior (to, from, savedPosition) {
+                return {
+                    x: 0,
+                    y: 0
+                };
+                // return 期望滚动到哪个的位置
+            }
         });
         router.beforeEach(function (to, from, next) {
 
@@ -111,6 +119,14 @@ define(function (require) {
                 EventBus.$emit('SET_PAGE_TRANSITION_NAME', pageTransitionName);
             }
             next();
+        });
+
+        // 代理所有链接的点击，使用vue-router进行跳转
+        $(document.body).on('click', 'a', function (e) {
+            if (this.origin === location.origin) {
+                router.push(this.href.replace(location.origin, ''))
+                return false;
+            }
         });
 
         return router;

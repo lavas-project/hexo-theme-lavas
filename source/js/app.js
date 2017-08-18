@@ -14,11 +14,6 @@ define(function (require) {
 
     function init(opt) {
 
-        // 如果是从非首页进入的要将hash定位到对应页面
-        if (location.pathname !== '/') {
-            location.href = '#' + location.pathname;
-        }
-
         var options = $.extend({
             router: router({
                 needPageTransition: opt.needPageTransition

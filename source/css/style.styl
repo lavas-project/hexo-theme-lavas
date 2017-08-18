@@ -35,7 +35,6 @@ body
     clearfix()
     max-width: (column-width + gutter-width) * columns + gutter-width
     margin: 0 auto
-    padding: 0 gutter-width
 
 .inner
     column(columns)
@@ -107,11 +106,24 @@ body
 .page-component
     position: relative
     background: color-background
-
+.theme-img-wrapper
+    position: relative
+    background: theme-color
+    overflow: hidden
+    .theme-img
+        position: relative
+        left: 50%
+        transform: translate(-50%)
+        display: block
+    .theme-img-mobile
+        display: none
+if !hexo-config("banner")
+    .theme-img-wrapper
+        min-height: 300px
 if sidebar and sidebar isnt bottom
     #main
         @media mq-normal
-          column(main-column)
+            column(main-column)
 
 if sidebar is left
     @media mq-normal
@@ -129,3 +141,4 @@ if sidebar is left
 
 if sidebar
     @import "_partial/sidebar"
+

@@ -29,7 +29,7 @@ define(function (require) {
         created: function () {
             var me = this;
 
-            if (firstPaint && me.$route.fullPath === '/') {
+            if (firstPaint) {
                 me.insertContent($('body'));
                 return;
             }

@@ -13,7 +13,8 @@ define(function (require) {
             return {
                 pageTransitionName: '',
                 animationActive: false,
-                headerWidth: ''
+                headerWidth: '',
+                mobileNavOn: false
             };
         },
         created: function () {
@@ -21,14 +22,7 @@ define(function (require) {
 
             EventBus.$on('SET_PAGE_TRANSITION_NAME', function (transitionName) {
                 me.pageTransitionName = transitionName;
-            });
-
-            // 代理所有链接的点击，将站内重定向都改成hash定位
-            $(document.body).on('click', 'a', function (e) {
-                if (this.origin === location.origin) {
-                    location.href = '#' + this.href.replace(location.origin, '');
-                    return false;
-                }
+                me.mobileNavOn = false;
             });
 
         },
@@ -39,6 +33,12 @@ define(function (require) {
             handleAfterEnter: function () {
                 this.animationActive = false;
                 EventBus.$emit('AFTER_ENTER');
+            },
+            showMainNav: function () {
+                this.mobileNavOn = true;
+            },
+            hideNav: function () {
+                this.mobileNavOn = false;
             }
         }
     };
