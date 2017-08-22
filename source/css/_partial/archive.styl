@@ -7,17 +7,21 @@ $article-padding = 24px
     clearfix()
 
 .archive-year-wrap
-    margin-bottom: 1em
+    margin: 0 article-padding 20px article-padding
+    font-size: 18px
+    color: #8e90da
+    font-weight: bold
+    border-left: solid 4px
+    padding-left: 13px
+    background: #f2f5f6
+    line-height: 34px
 
-.archive-year
-    @extend $block-caption
-
-.archives
-    column-gap: 10px
-    @media mq-tablet
-        column-count: 2
-    @media mq-normal
-        column-count: 3
+// .archives
+//     column-gap: 10px
+//     @media mq-tablet
+//         column-count: 2
+//     @media mq-normal
+//         column-count: 3
 
 .archive-article
     avoid-column-break()
@@ -75,6 +79,7 @@ $article-padding = 24px
     .space
         color: color-border
 .article-list
+    margin: block-margin auto
     .article
         position: relative
         margin: 0
@@ -87,14 +92,17 @@ $article-padding = 24px
         .article-inner
             box-shadow: none;
         .article-title
-            padding-bottom: $article-padding
+
             padding-top: $article-padding
             color: #666
-            font-size: 20px
+            font-size: 18px
             background: #fff
             transition: all ease .5s
+
             h1
                 ellipsis()
+                padding-bottom: $article-padding
+                border-bottom: solid 1px #efefef
             &:hover
                 background: #efefef
         .article-date

@@ -1,36 +1,36 @@
-
-<% if (pagination == 2) { %>
-    <div class="article-list">
+<div class="article-list">
+    <% if (pagination == 2) { %>
         <% page.posts.each(function (post) { %>
             <%- partial('article', {post: post, index: true, hasContent: false}) %>
         <% }) %>
-    </div>
-<% } else { %>
-    <% var last; %>
+    <% } else { %>
+        <% var last; %>
 
-    <% page.posts.each(function (post, i) { %>
-        <% var year = post.date.year(); %>
-        <% if (last != year) { %>
+        <% page.posts.each(function (post, i) { %>
+            <% var year = page.year; %>
+            <% var month = page.month >= 10 ? page.month : '0' + page.month; %>
+            <% if (last != year) { %>
 
-            <% if (last != null) { %>
-                </div></section>
+                <% if (last != null) { %>
+                    </div></section>
+                <% } %>
+
+                <% last = year; %>
+                <section class="archives-wrap">
+                    <div class="archive-year-wrap">
+                        <span class="archive-year"><%= year %> / <%= month %></span>
+                    </div>
+                <div class="archives">
             <% } %>
+            <%- partial('article', {post: post, index: true, hasContent: false}) %>
+        <% }) %>
 
-            <% last = year; %>
-            <section class="archives-wrap">
-                <div class="archive-year-wrap">
-                    <a href="<%- url_for(config.archive_dir + '/' + year) %>" class="archive-year"><%= year %></a>
-                </div>
-            <div class="archives">
+        <% if (page.posts.length) { %>
+            </div></section>
         <% } %>
-        <%- partial('archive-post', {post: post, even: i % 2 == 0}) %>
-    <% }) %>
 
-    <% if (page.posts.length) { %>
-        </div></section>
     <% } %>
-
-<% } %>
+</div>
 
 <% if (page.total > 1) { %>
     <nav id="page-nav">
