@@ -1,5 +1,4 @@
 @media mq-mobile
-    @import "_animation"
     #mobile-nav
         position: absolute
         top: 0
@@ -27,14 +26,14 @@
     #footer
         position: relative
         padding: 25px 0
-    .transition-wrapper
+    .wrap
         top: wise-header-height
     .content-wrapper
         padding-bottom: 0
     .skeleton
-        position: absolute
+        position: fixed
         display: block
-        top: 0
+        top: wise-header-height
         left: 0
         width: 100%
         z-index: 0
@@ -44,3 +43,6 @@
             width: 100%
         .theme-img-pc
             display: none
+    .article-inner
+        box-shadow: none
+        border: none

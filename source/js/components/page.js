@@ -4,10 +4,8 @@
  */
 
 define(function (require) {
-    var EventBus = require('../lib/event-bus');
     var pageScrollTop = {};
     var firstPaint = true;
-    var registered;
 
     return {
         template: '<div v-html="html" class="page-component"></div>',
@@ -24,64 +22,57 @@ define(function (require) {
                 var mainOuter = $body.find('.main-outer')[0];
                 mainOuter.style.display = '';
                 me.html = mainOuter.outerHTML;
+            },
+            getPageContent: function () {
+                var me = this;
+
+                if (firstPaint) {
+                    me.insertContent($('body'));
+                    return;
+                }
+
+                $.ajax({
+                    url: this.$route.path
+                })
+                .then(function (html) {
+
+                    if (!html) {
+                        return;
+                    }
+
+                    var body = /<body>(.|\n)*<\/body>/.exec(html)[0];
+
+                    if (!body) {
+                        return;
+                    }
+
+                    body = body.replace(/<body>(\s|\n)*/, '<body>');
+                    body = body.replace(/(\s|\n)*<\/body>/, '</body>');
+                    var $body = $(body);
+
+                    me.insertContent($body);
+                    setTimeout(function () {
+                        me.setScroll();
+                    }, 0);
+
+                });
+            },
+            setScroll: function (scrollTop) {
+                scrollTop = scrollTop !== undefined ? scrollTop : pageScrollTop[this.$route.path];
+                document.body.scrollTop = document.documentElement.scrollTop = scrollTop || 0;
             }
         },
         created: function () {
-            var me = this;
-
-            if (firstPaint) {
-                me.insertContent($('body'));
-                return;
-            }
-
-            $.ajax({
-                url: this.$route.path
-            })
-            .then(function (html) {
-
-                if (!html) {
-                    return;
-                }
-
-                var body = /<body>(.|\n)*<\/body>/.exec(html)[0];
-
-                if (!body) {
-                    return;
-                }
-
-                body = body.replace(/<body>(\s|\n)*/, '<body>');
-                body = body.replace(/(\s|\n)*<\/body>/, '</body>');
-                var $body = $(body);
-
-                me.insertContent($body);
-
-            });
-
-            if (!registered) {
-                EventBus.$on('AFTER_ENTER', function () {
-                    setTimeout(function () {
-                        var scrollTop = pageScrollTop[me.$route.fullPath] || 0;
-                        document.body.scrollTop = document.documentElement.scrollTop = scrollTop;
-                    }, 0);
-                });
-                registered = true;
-            }
-
+            this.getPageContent();
 
         },
         beforeRouteUpdate: function (to, from, next) {
-            var me = this;
-            var curFullPath = me.$route.fullPath;
-            var transitionEle = me.$el.parentNode.parentNode;
+            this.html = '';
             firstPaint = false;
-            pageScrollTop[curFullPath] = document.body.scrollTop || document.documentElement.scrollTop;
-
-            if (transitionEle) {
-                transitionEle.classList.add('enable-scroll');
-                transitionEle.scrollTop = pageScrollTop[curFullPath];
-            }
+            pageScrollTop[this.$route.path] = document.body.scrollTop || document.documentElement.scrollTop;
+            this.setScroll(0);
             next();
-
+            this.getPageContent();
         }
     };
 });

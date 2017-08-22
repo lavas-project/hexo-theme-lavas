@@ -1,3 +1,5 @@
+$article-padding = 24px
+
 .archives-wrap
     margin: block-margin 0
 
@@ -72,3 +74,29 @@
         font-weight: bold
     .space
         color: color-border
+.article-list
+    .article
+        position: relative
+        margin: 0
+        &:active
+            background: #efefef
+        .article-meta
+            position: absolute
+            right: 0
+            bottom: 0
+        .article-inner
+            box-shadow: none;
+        .article-title
+            padding-bottom: $article-padding
+            padding-top: $article-padding
+            color: #666
+            font-size: 20px
+            background: #fff
+            transition: all ease .5s
+            h1
+                ellipsis()
+            &:hover
+                background: #efefef
+        .article-date
+            font-weight: normal
+
