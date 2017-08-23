@@ -21,7 +21,13 @@
                 <% last = year; %>
                 <section class="archives-wrap">
                     <div class="archive-year-wrap">
-                        <span class="archive-year"><%= year %> / <%= month %></span>
+                        <span class="archive-year">
+                            <% if (page.category) { %>
+                                <%= page.category %>
+                            <% } else { %>
+                                <%= year %> / <%= month %>
+                            <% } %>
+                        </span>
                     </div>
                 <div class="archives">
             <% } %>

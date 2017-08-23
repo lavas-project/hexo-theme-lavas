@@ -20,16 +20,22 @@
 
 .article-category
     float: left
-    line-height: 1em
+    line-height: inherit
     color: #ccc
     text-shadow: 0 1px #fff
-    margin-left: 8px
+    margin-left: 2px
     &:before
-        content: "\2022"
+        font-size: 12px
+        content: "\f02b"
+        font-family: font-icon
 
 .article-category-link
     @extend $block-caption
-    margin: 0 12px 1em
+    padding: 0 12px 0 5px
+    font-weight: normal
+    transition: color ease .3s
+    &:hover
+        color: #000
 
 
 .article-title
