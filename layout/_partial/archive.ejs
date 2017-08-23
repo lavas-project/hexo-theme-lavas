@@ -7,8 +7,11 @@
         <% var last; %>
 
         <% page.posts.each(function (post, i) { %>
-            <% var year = page.year; %>
-            <% var month = page.month >= 10 ? page.month : '0' + page.month; %>
+            <%
+                var year = post.date.year();
+                var month = post.date.month() + 1;
+                month = month >= 10 ? month : '0' + month;
+            %>
             <% if (last != year) { %>
 
                 <% if (last != null) { %>
