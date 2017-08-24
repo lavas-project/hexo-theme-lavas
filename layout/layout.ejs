@@ -15,7 +15,7 @@
                 </keep-alive>
             </div>
             <div class="main-outer" style="display: none">
-                <% if (path === 'index.html' || /^page\/\d+\/index.html/.test(path)) { %>
+                <% if (is_home()) { %>
                     <div class="theme-img-wrapper">
                         <% if (theme.banner) { %>
 

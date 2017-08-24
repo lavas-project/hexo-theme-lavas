@@ -4,31 +4,34 @@
             <%- partial('article', {post: post, index: true, hasContent: false}) %>
         <% }) %>
     <% } else { %>
-        <% var last; %>
+        <%
+            var lastYear;
+            var lastMonth;
+            var archiveType = theme.archive_type;
+            var dateFormat = archiveType === 'monthly' ? 'YYYY / MM' : 'YYYY';
+        %>
+
+        <% if (is_category()) { %>
+            <div class="archive-category-title block-title"><%= page.category %> 分类文章</div>
+        <% } %>
 
         <% page.posts.each(function (post, i) { %>
             <%
                 var year = post.date.year();
-                var month = post.date.month() + 1;
-                month = month >= 10 ? month : '0' + month;
+                var month = post.date.month();
             %>
-            <% if (last != year) { %>
+            <% if ((archiveType === 'yearly' && lastYear !== year) || (archiveType === 'monthly' && lastMonth !== month)) { %>
 
-                <% if (last != null) { %>
+                <% if (lastYear || lastMonth) { %>
                     </div></section>
                 <% } %>
 
-                <% last = year; %>
+                <%
+                    lastYear = year;
+                    lastMonth = month;
+                %>
                 <section class="archives-wrap">
-                    <div class="archive-year-wrap">
-                        <span class="archive-year">
-                            <% if (page.category) { %>
-                                <%= page.category %>
-                            <% } else { %>
-                                <%= year %> / <%= month %>
-                            <% } %>
-                        </span>
-                    </div>
+                    <div class="archive-archive-title block-title"><%- date(post.date, dateFormat) %></div>
                 <div class="archives">
             <% } %>
             <%- partial('article', {post: post, index: true, hasContent: false}) %>

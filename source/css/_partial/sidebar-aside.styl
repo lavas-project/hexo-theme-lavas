@@ -7,6 +7,22 @@
 
 .widget-title
     @extend $block-caption
+    &:before
+        font-family: font-icon
+        margin-right: 6px
+    &.widget-title-archive
+        &:before
+            content: "\f114"
+    &.widget-title-category
+        &:before
+            content: "\f022"
+    &.widget-title-tag "\f016"
+        &:before
+            content: "\f114"
+    &.widget-title-recent
+        &:before
+            content: "\f016"
+
 
 .widget
     color: color-sidebar-text
@@ -15,7 +31,7 @@
     padding: 15px
     border-radius: 3px
     a
-        color: color-grey-link
+        color: color-grey
         text-decoration: none
         padding: 8px 0
         display: inline-block;

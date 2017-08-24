@@ -1,6 +1,7 @@
 # Header
 menu:
   Home: /
+  Archives: /archives
 rss: false
 
 # Content
@@ -22,7 +23,7 @@ index_widgets:
 # - archive
 
 # widget behavior
-archive_type: 'monthly'
+archive_type: monthly
 show_count: true
 
 # Miscellaneous

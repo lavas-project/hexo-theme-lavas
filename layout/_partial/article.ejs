@@ -9,7 +9,7 @@
         <% } %>
         <div class="article-meta">
             <%- partial('post/category') %>
-            <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+            <%- partial('post/date', {class_name: 'article-date', date_format: 'YYYY/MM/DD'}) %>
         </div>
 
         <% if (hasContent) { %>

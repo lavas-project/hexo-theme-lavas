@@ -9,7 +9,7 @@
             title = __('archive_a');
 
             if (is_month()) {
-                title += ': ' + page.year + '/' + page.month;
+                title += ': ' + page.year + '/' + (page.month > 9 ? page.month : '0' + page.month);
             }
             else if (is_year()) {
                 title += ': ' + page.year;
