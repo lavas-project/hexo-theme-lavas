@@ -4,7 +4,7 @@
         <% if (post.prev) { %>
             <a href="<%- url_for(post.prev.path) %>" id="article-nav-newer" class="article-nav-link-wrap">
                 <div class="article-nav-title">
-                    <label class="fa-arrow-left"></label>
+                    <i class="material-icons fa-arrow-left">arrow_back</i>
                     <div class="article-nav-title-text">
                         <% if (post.prev.title) { %>
                             <%= post.prev.title %>
@@ -26,7 +26,7 @@
                             (no title)
                         <% } %>
                     </div>
-                    <label class="fa-arrow-right"></label>
+                    <i class="material-icons fa-arrow-right">arrow_forward</i>
                 </div>
             </a>
         <% } %>

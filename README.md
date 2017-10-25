@@ -1,111 +1,87 @@
-# Landscape
+# hexo-theme-lavas
 
-A brand new default theme for [Hexo].
+hexo-theme-lavas 是 [Lavas](https://lavas.baidu.com/) 为 hexo 定制的主题，主题中具备 [Lavas](https://lavas.baidu.com/) 的多种特性
 
-- [Preview](http://hexo.io/hexo-theme-landscape/)
+- [预览](http://hexo.io/hexo-theme-landscape/)
 
-## Installation
+## 使用
 
-### Install
+### 安装
 
 ``` bash
-$ git clone https://github.com/hexojs/hexo-theme-landscape.git themes/landscape
+$ git clone https://github.com/hexojs/hexo-theme-landscape.git
 ```
 
-**Landscape requires Hexo 2.4 and above.**
+### 使用
 
-### Enable
+修改hexo项目 `_config.yml` 文件中主题配置 `theme` 为 `hexo-theme-lavas`
 
-Modify `theme` setting in `_config.yml` to `landscape`.
-
-### Update
+### 升级
 
 ``` bash
-cd themes/landscape
+cd themes/hexo-theme-lavas
 git pull
 ```
 
-## Configuration
+## 配置
+
+### 项目配置
+
+```
+# 网站标题，页面title、首页横幅都会使用该title配置
+title: Lavas
+
+# 网站副标题，首页横幅中的网站简介使用该配置
+subtitle: 基于 Vue 的 PWA 解决方案，帮助开发者快速搭建 PWA 应用，解决接入 PWA 的各种问题
+
+# 其余配置遵循 hexo 原有逻辑
+```
+
+### 主题配置
 
 ``` yml
-# Header
+# 菜单栏配置，一个名字，一个url对应
 menu:
   Home: /
-  Archives: /archives
-rss: /atom.xml
+  Archives: /archives/
 
-# Content
+# 摘要文章底部“阅读更多”的链接，设置为false则隐藏该链接
 excerpt_link: Read More
-fancybox: true
 
-# Sidebar
+# Sidebar 侧边栏位置设置，可设置为left、right、bottom，分别将侧边栏放置在左边、右边和底部，也可以设置为false直接不展示侧边栏
 sidebar: right
+
+# 侧边栏模块，包含“分类”、“标签”、“归档”、“最新发布”，将按配置顺序罗列展示
 widgets:
+- recent_posts
 - category
 - tag
-- tagcloud
 - archives
-- recent_posts
 
-# Miscellaneous
-google_analytics:
+# 归档类型，可分为 monthly 和 yearly，分别代表月份归档和年份归档
+archive_type
+
+# 是否显示数量，true则在侧边栏模块分类中显示文章数量
+show_count: true
+
+# favicon 地址
 favicon: /favicon.png
-twitter:
-google_plus:
-```
 
-- **menu** - Navigation menu
-- **rss** - RSS link
-- **excerpt_link** - "Read More" link at the bottom of excerpted articles. `false` to hide the link.
-- **fancybox** - Enable [Fancybox]
-- **sidebar** - Sidebar style. You can choose `left`, `right`, `bottom` or `false`.
-- **widgets** - Widgets displaying in sidebar
-- **google_analytics** - Google Analytics ID
-- **favicon** - Favicon path
-- **twitter** - Twiiter ID
-- **google_plus** - Google+ ID
+# 是否启用 service worker，开启离线缓存功能
+service_worker: true
 
-## Features
+# manifest 是否启用 manifest
+manifest
 
-### Fancybox
-
-Landscape uses [Fancybox] to showcase your photos. You can use Markdown syntax or fancybox tag plugin to add your photos.
+# banner 配置首页横幅图片，pc、mobile 分别配置pc和移动端的横幅图片，不配置将会使用默认颜色填充
+banner:
+  pc: /img/banner-pc.jpg
+  mobile: /img/banner-mobile.jpg
 
 ```
-![img caption](img url)
-
-{% fancybox img_url [img_thumbnail] [img_caption] %}
-```
-
-### Sidebar
-
-You can put your sidebar in left side, right side or bottom of your site by editing `sidebar` setting.
-
-Landscape provides 5 built-in widgets:
-
-- category
-- tag
-- tagcloud
-- archives
-- recent_posts
-
-All of them are enabled by default. You can edit them in `widget` setting.
 
 ## Development
 
-### Requirements
+### 要求
 
-- [Grunt] 0.4+
 - Hexo 2.4+
-
-### Grunt tasks
-
-- **default** - Download [Fancybox] and [Font Awesome].
-- **fontawesome** - Only download [Font Awesome].
-- **fancybox** - Only download [Fancybox].
-- **clean** - Clean temporarily files and downloaded files.
-
-[Hexo]: http://zespia.tw/hexo/
-[Fancybox]: http://fancyapps.com/fancybox/
-[Font Awesome]: http://fontawesome.io/
-[Grunt]: http://gruntjs.com/

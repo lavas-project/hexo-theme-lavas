@@ -18,12 +18,9 @@ $article-padding = 24px
     border-left: solid 4px
 .archive-archive-title
     color: #555
-    &:before
-        content: "\f073"
-        font-family: font-icon
+    i
         margin-right: 10px
-        font-weight: normal
-        color: #999
+        font-size: 22px
 
 // .archives
 //     column-gap: 10px
@@ -96,23 +93,24 @@ $article-padding = 24px
             background: #efefef
         .article-meta
             position: absolute
-            right: 0
+            left: 0
             bottom: 0
         .article-inner
             box-shadow: none;
         .article-title
-            padding-top: $article-padding
+            padding-top: 10px
             color: color-grey-link
-            font-size: 18px
+            font-size: 16px
             background: #fff
-            transition: all ease .5s
+            transition: all ease .3s
+            font-weight: normal
 
             h1
                 ellipsis()
                 padding-bottom: $article-padding
                 border-bottom: solid 1px #efefef
             &:hover
-                background: #efefef
+                color: color-link
         .article-date
             font-weight: normal
     .archives

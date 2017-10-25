@@ -8,8 +8,8 @@
             </header>
         <% } %>
         <div class="article-meta">
-            <%- partial('post/category') %>
             <%- partial('post/date', {class_name: 'article-date', date_format: 'YYYY/MM/DD'}) %>
+            <%- partial('post/category') %>
         </div>
 
         <% if (hasContent) { %>

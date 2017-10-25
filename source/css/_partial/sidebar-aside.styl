@@ -7,22 +7,9 @@
 
 .widget-title
     @extend $block-caption
-    &:before
-        font-family: font-icon
-        margin-right: 6px
-    &.widget-title-archive
-        &:before
-            content: "\f114"
-    &.widget-title-category
-        &:before
-            content: "\f022"
-    &.widget-title-tag "\f016"
-        &:before
-            content: "\f114"
-    &.widget-title-recent
-        &:before
-            content: "\f016"
-
+    font-size: 14px
+    .material-icons
+        margin-right: 3px
 
 .widget
     color: color-sidebar-text
@@ -30,15 +17,17 @@
     text-shadow: 0 1px #fff
     padding: 15px
     border-radius: 3px
+    li
+        ellipsis()
     a
-        color: color-grey
+        color: color-grey-link
         text-decoration: none
         padding: 8px 0
         display: inline-block;
         line-height: 16px
         transition: color ease .3s
         &:hover
-            color: #000
+            color: color-link
     ul, ol, dl
         ul, ol, dl
             margin-left: 15px

@@ -31,7 +31,7 @@
                     lastMonth = month;
                 %>
                 <section class="archives-wrap">
-                    <div class="archive-archive-title block-title"><%- date(post.date, dateFormat) %></div>
+                    <div class="archive-archive-title block-title"><i class="material-icons">date_range</i><%- date(post.date, dateFormat) %></div>
                 <div class="archives">
             <% } %>
             <%- partial('article', {post: post, index: true, hasContent: false}) %>
